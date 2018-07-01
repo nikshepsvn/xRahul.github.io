@@ -1,0 +1,930 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="https://rahulja.in/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rahulja.in/" rel="alternate" type="text/html" /><updated>2018-07-01T21:19:56+05:30</updated><id>https://rahulja.in/</id><title type="html">Rahul Jain</title><subtitle>This is the personal blog and profile of Rahul Jain, a full-stack engineer and web enthusiast living in Hyderabad, India.</subtitle><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><entry><title type="html">Getting Started with Gradle using Java Application</title><link href="https://rahulja.in/posts/getting-started-with-gradle-using-java-application" rel="alternate" type="text/html" title="Getting Started with Gradle using Java Application" /><published>2018-05-19T00:00:00+05:30</published><updated>2018-05-20T02:15:53+05:30</updated><id>https://rahulja.in/posts/getting-started-with-gradle-using-java-application</id><content type="html" xml:base="https://rahulja.in/posts/getting-started-with-gradle-using-java-application">&lt;p&gt;&lt;a href=&quot;/assets/posts/getting-started-with-gradle-using-java-application/gradle-logo.jpg&quot;&gt;
+    &lt;img src=&quot;/assets/posts/getting-started-with-gradle-using-java-application/gradle-logo.jpg&quot; alt=&quot;Gradle&quot; data-action=&quot;zoom&quot; data-rjs=&quot;/assets/posts/getting-started-with-gradle-using-java-application/gradle-logo.jpg&quot; data-zooming-width=&quot;680&quot; data-zooming-height=&quot;146&quot; /&gt;
+  &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If you’ve worked in Java, you probably have encountered Gradle by now, be it in an Android or a Spring Application. Whether you have used Gradle or not, It’s good to know one of the leading build tools in the market.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://gradle.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Gradle&lt;/a&gt; is the next evolutionary step in &lt;a href=&quot;https://en.wikipedia.org/wiki/Java_virtual_machine&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;JVM&lt;/a&gt;-based build tools. It draws on lessons learned from established tools such as &lt;a href=&quot;https://ant.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Ant&lt;/a&gt; and &lt;a href=&quot;https://maven.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Maven&lt;/a&gt; and takes their best ideas to the next level. Following a build-by-convention approach, Gradle allows for declaratively modelling your problem domain using a powerful and expressive domain-specific language (DSL) implemented in &lt;a href=&quot;http://groovy-lang.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Groovy&lt;/a&gt; instead of XML. Because Gradle is a JVM native, it allows you to write custom logic in the language you’re most comfortable with, be it Java or Groovy.&lt;sup&gt;&lt;a href=&quot;http://www.drdobbs.com/jvm/why-build-your-java-projects-with-gradle/240168608&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Gradle builds are not just for Java applications. You can leverage Gradle to help you build applications in Java, C++, Python or your language of choice.&lt;/li&gt;
+  &lt;li&gt;You can find &lt;a href=&quot;https://docs.gradle.org/current/userguide/userguide.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;official tutorials&lt;/a&gt; for Android, C++, Groovy, Java, JavaScript, Kotlin and Scala under Project Tutorials.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;install&quot;&gt;Install&lt;/h3&gt;
+
+&lt;p&gt;To install Gradle, please follow the &lt;a href=&quot;https://gradle.org/install/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;official docs&lt;/a&gt; to get up to date installation instructions. Installation using package manager is recommended.&lt;/p&gt;
+
+&lt;h3 id=&quot;basic-concepts&quot;&gt;Basic concepts&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A Gradle &lt;strong&gt;Build&lt;/strong&gt; can have multiple &lt;strong&gt;Projects&lt;/strong&gt; which in turn can have multiple &lt;strong&gt;Tasks&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;A &lt;code class=&quot;highlighter-rouge&quot;&gt;gradle.properties&lt;/code&gt; file is required to configure the build and &lt;code class=&quot;highlighter-rouge&quot;&gt;settings.gradle&lt;/code&gt; file is required for multi-project builds to tell Gradle which projects to build.&lt;/li&gt;
+  &lt;li&gt;Gradle supports &lt;strong&gt;Plugins&lt;/strong&gt;, which contains dependencies, tasks and configurations(like source location) that can be applied to our build and make Gradle easy to use.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;features&quot;&gt;Features&lt;/h3&gt;
+
+&lt;p&gt;Check out the categorized &lt;a href=&quot;https://gradle.org/features/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;list of features&lt;/a&gt; provided by Gradle.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.gradle.org/introducing-incremental-build-support&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Incremental Builds&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.gradle.org/current/userguide/custom_tasks.html#worker_api&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Parallel Execution&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.gradle.org/current/userguide/tutorial_gradle_command_line.html#sec:continue_build_on_failure&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Continuous Execution even After Failures&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.gradle.org/current/userguide/dependency_management.html#sub:exclude_transitive_dependencies&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Transitive Dependencies&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.gradle.org/current/userguide/dependency_management.html#sec:dependency_resolution&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Version Conflict Resolution&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.gradle.org/current/userguide/pt05.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Built-in Support for JVM Code Quality Tools&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.gradle.org/current/userguide/logging.html#sec:changing_what_gradle_logs&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Customizable Logging&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;building-a-java-application-using-gradle&quot;&gt;Building a Java Application using Gradle&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;java-demo &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;java-demo
+gradle init &lt;span class=&quot;nt&quot;&gt;--type&lt;/span&gt; java-application&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Gradle comes with a built-in plugin called the &lt;a href=&quot;https://docs.gradle.org/current/userguide/build_init_plugin.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;strong&gt;Build Init Plugin&lt;/strong&gt;&lt;/a&gt;. You can see the details of building a Java application in the &lt;a href=&quot;https://guides.gradle.org/building-java-applications/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;official docs&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;It generates the default &lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;test&lt;/code&gt; folders for the source code along with other configurational files.&lt;/li&gt;
+  &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file contains &lt;em&gt;java&lt;/em&gt; and &lt;em&gt;application&lt;/em&gt; plugins, a class name for the entry point of &lt;strong&gt;jar&lt;/strong&gt;, the public Bintray Artifactory repository and some dependencies to help with the development and testing of the application.&lt;/li&gt;
+  &lt;li&gt;Because the Gradle build used the Application plugin, you can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;./gradlew run&lt;/code&gt; command to Build, Test and Execute the project.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;important-components-of-gradle&quot;&gt;Important components of Gradle&lt;/h3&gt;
+
+&lt;h4 id=&quot;gradle-wrapper&quot;&gt;Gradle Wrapper&lt;/h4&gt;
+
+&lt;p&gt;This is the recommended way to build a Gradle project. When you initialize a Gradle project, the &lt;a href=&quot;https://docs.gradle.org/current/userguide/gradle_wrapper.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;gradle wrapper&lt;/a&gt; is set up automatically which can be executed just like Gradle as:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;./gradlew &amp;lt;task&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Gradle changes a lot with its upgrades and the old &lt;code class=&quot;highlighter-rouge&quot;&gt;gradle.build&lt;/code&gt; files might not work for the newer versions. Gradle Wrapper automatically downloads and uses the recommended version of Gradle to execute your tasks.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gradle wrapper&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;You have to push the Gradle wrapper files to &lt;strong&gt;Version control&lt;/strong&gt; like git, including &lt;strong&gt;jars&lt;/strong&gt;, so everyone can use the same wrapper to build your projects
+You can &lt;strong&gt;upgrade&lt;/strong&gt; the Gradle wrapper via it’s CLI to make sure any other optimizations present in the build are also applied.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;./gradlew wrapper &lt;span class=&quot;nt&quot;&gt;--gradle-version&lt;/span&gt; 4.2.1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;gradle-daemon&quot;&gt;Gradle Daemon&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;This daemon runs in the background on your system and helps builds run faster by avoiding the expensive bootstrapping process as well as leveraging caching, by keeping data about your project in memory.&lt;/li&gt;
+  &lt;li&gt;Gradle Daemon is enabled by default starting with Gradle 3.0, so it requires no setup.&lt;/li&gt;
+  &lt;li&gt;In between builds, it waits idly for the next build. This has the obvious benefit of only requiring Gradle to be loaded into memory once for multiple builds, as opposed to once for each build.&lt;/li&gt;
+  &lt;li&gt;The Daemon can also leverage caching and can progressively become more optimal with each rebuild to decrease the build times.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Go through the &lt;a href=&quot;https://docs.gradle.org/current/userguide/command_line_interface.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Gradle CLI Docs&lt;/a&gt; to see what else you can do;&lt;/p&gt;
+
+&lt;h3 id=&quot;dependency-management-with-gradle&quot;&gt;Dependency management with Gradle&lt;/h3&gt;
+
+&lt;p&gt;This is one of the major feature provided by a build system. Dependency management is a technique for declaring, resolving and using dependencies required by the project in an automated fashion.&lt;/p&gt;
+
+&lt;p&gt;There are some widely used public &lt;a href=&quot;https://docs.gradle.org/current/userguide/repository_types.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;repositories&lt;/a&gt; of Gradle like &lt;code class=&quot;highlighter-rouge&quot;&gt;mavenCentral()&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;jcenter()&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;google()&lt;/code&gt;. But you can also define other repositories by url, even the ones secure access via credentials.&lt;/p&gt;
+
+&lt;p&gt;There are different &lt;a href=&quot;https://docs.gradle.org/current/userguide/dependency_types.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;strong&gt;types of dependencies&lt;/strong&gt;&lt;/a&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-gradle&quot; data-lang=&quot;gradle&quot;&gt;&lt;span class=&quot;k&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Module dependencies&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;runtime&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;group:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'org.springframework'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;name:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'spring-core'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'2.5'&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// File Dependencies&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;runtime&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'libs/a.jar'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'libs/b.jar'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$buildDir/classes&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;builtBy&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'compile'&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Project dependencies&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;compile&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;':shared'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As Gradle is widely used in Java and Android projects, you can check these links to get a detailed overview. They will give you an idea on how to use compile, runtime or test dependencies among other things:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.gradle.org/current/userguide/java_plugin.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Java configuration via Java plugin&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.android.com/studio/build/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Android configuration via Android plugin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;references&quot;&gt;References&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Gradle&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Gradle - Wikipedia&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://docs.gradle.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Gradle - Official Docs&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://gradle.org/guides/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Gradle Tutorials and Guides&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://guides.gradle.org/building-java-applications/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Gradle Guides - Building Java Applications&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://www.drdobbs.com/jvm/why-build-your-java-projects-with-gradle/240168608&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Why Build Your Java Projects with Gradle Rather than Ant or Maven?&lt;/a&gt;&lt;/p&gt;</content><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><category term="java" /><category term="code" /><category term="development" /><summary type="html"></summary></entry><entry><title type="html">Object-Oriented Vanilla Javascript - Part 1</title><link href="https://rahulja.in/posts/object-oriented-vanilla-javascript-part-1" rel="alternate" type="text/html" title="Object-Oriented Vanilla Javascript - Part 1" /><published>2017-12-24T00:00:00+05:30</published><updated>2018-05-19T11:04:23+05:30</updated><id>https://rahulja.in/posts/object-oriented-vanilla-javascript-part-1</id><content type="html" xml:base="https://rahulja.in/posts/object-oriented-vanilla-javascript-part-1">&lt;p&gt;&lt;a href=&quot;/assets/posts/object-oriented-vanilla-javascript/og-image@2x.png&quot;&gt;
+    &lt;img src=&quot;/assets/posts/object-oriented-vanilla-javascript/og-image.png&quot; alt=&quot;Object Oriented Javascript&quot; data-action=&quot;zoom&quot; data-rjs=&quot;/assets/posts/object-oriented-vanilla-javascript/og-image@2x.png&quot; data-zooming-width=&quot;800&quot; data-zooming-height=&quot;440&quot; /&gt;
+  &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As web developers, we use Javascript in our daily life but rarely do we take out the time and learn intricacies of the language. We accept many things at face value as they do not impact the work we need to do and make assumptions about other things that are mostly correct.&lt;/p&gt;
+
+&lt;p&gt;But once you know you will be working on something for a long time, it’s time to put the foot down and start learn things properly to qualify from development to engineering.&lt;/p&gt;
+
+&lt;p&gt;Below are some topics that will help you get an overview of the Whats and the Hows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;scopes&quot;&gt;Scopes&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Scope determines the visibility of variables, functions, and objects in some particular part of your code during runtime.&lt;/li&gt;
+      &lt;li&gt;Also called &lt;em&gt;Execution Context&lt;/em&gt; (Not to be confused with &lt;em&gt;Context&lt;/em&gt; below)&lt;/li&gt;
+      &lt;li&gt;Types of Scopes:
+        &lt;ul&gt;
+          &lt;li&gt;&lt;em&gt;Local&lt;/em&gt; - Variables defined inside a function are not available outside that function&lt;/li&gt;
+          &lt;li&gt;&lt;em&gt;Global&lt;/em&gt; - Variables defined outside any scope and can be accessed anywhere in the code&lt;/li&gt;
+          &lt;li&gt;&lt;em&gt;Lexical&lt;/em&gt; - Variables from parent scope are available inside the nested scopes.
+            &lt;ul&gt;
+              &lt;li&gt;Scope Chain: When accessing a variable, JS will start searching from the current scope, and keep jumping up in nested scopes to find it.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bike&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;wheels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// bike variable is in global scope&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ride&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;speed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// speed variable is in local scope of ride function&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;context--this-keyword&quot;&gt;Context &amp;amp; &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; keyword&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Developers generally get confused between scope and context. Context is used to refer to the value of &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; variable in some place in the code.&lt;/li&gt;
+      &lt;li&gt;Generally, &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; keyword in a context refers to the object it was called against, i.e. the variable left of the dot in a function call.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fn_ride&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bike&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;wheels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// bike variable is in global scope&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;bike&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ride&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fn_ride&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;bike&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ride&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// `ride()` points to `fn_ride()` in which `bike` will be logged&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// `ride()` function was called in context of `bike`.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// So, `this` will point to `bike` inside fn_ride function&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// during the `bike.ride()` call.&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;bike&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ride&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// here you're changing the context from `bike` to `car`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;closures&quot;&gt;Closures&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;It is created when an inner function tries to access the variables defined in and arguments passed into the outer function.&lt;/li&gt;
+      &lt;li&gt;Even when the inner function is called outside the outer function, those variables will be available to the closure.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CarOf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;driver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; is driving&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;drivingMyCar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CarOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Mike&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;drivingMyCar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// This will log &quot;Mike is driving&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Here the value of driver argument is preserved.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;constructors&quot;&gt;Constructors&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;These are the functions to the right of class definition.&lt;/li&gt;
+      &lt;li&gt;The constructor function is nothing more than a normal function.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Car&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Constructor function&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;wheels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;driverName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myCar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Rahul&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;prototype&quot;&gt;Prototype&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;This is a default attribute in every javascript function.&lt;/li&gt;
+      &lt;li&gt;It points to an object in which properties and functions of a class can be assigned that should be usable by every object of that class(object of the constructor function).&lt;/li&gt;
+      &lt;li&gt;Every object has a prototype that can be modified through the constructor’s prototype.&lt;/li&gt;
+      &lt;li&gt;If the current scope doesn’t have the accessed attribute, the prototype of that function is checked before going to outer nesting.&lt;/li&gt;
+      &lt;li&gt;Every prototype has a &lt;code class=&quot;highlighter-rouge&quot;&gt;constructor&lt;/code&gt; property that points to the class(Constructor function) of that prototype.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Car&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// new anonymous function created with every new object of Car class&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;driving&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;driver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; is driving&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Only one anonymous function created for every object of Car class&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;driving&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;driver&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; is driving&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// logs `Car`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h3 id=&quot;prototype-chain&quot;&gt;Prototype Chain&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Every object has a prototype which has been chained all the way upto &lt;code class=&quot;highlighter-rouge&quot;&gt;Object&lt;/code&gt; variable.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vehicle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Car&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Vehicle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Here, we are creating link between Car's prototype and Vehicle's prototype.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Any method not found in `Car.prototype` will be searched in `Vehicle.prototype`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;references&quot;&gt;References&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.udacity.com/course/object-oriented-javascript--ud015&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Object-Oriented JavaScript - Udacity&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://scotch.io/tutorials/understanding-scope-in-javascript&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Understanding Scope in JavaScript - Scotch.io&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://community.risingstack.com/javascript-prototype-chain-inheritance/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Understanding the JavaScript Prototype Chain &amp;amp; Inheritance - RisingStack&lt;/a&gt;&lt;/p&gt;</content><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><category term="javascript" /><category term="code" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://rahulja.in/posts/object-oriented-vanilla-javascript/og-image.png" /></entry><entry><title type="html">Get a notification when RAM is using compressions or swaps on MacOSX</title><link href="https://rahulja.in/posts/get-a-notification-when-ram-is-using-compressions-or-swaps-on-macosx" rel="alternate" type="text/html" title="Get a notification when RAM is using compressions or swaps on MacOSX" /><published>2017-03-17T00:00:00+05:30</published><updated>2018-05-19T11:04:23+05:30</updated><id>https://rahulja.in/posts/get-a-notification-when-ram-is-using-compressions-or-swaps-on-macosx</id><content type="html" xml:base="https://rahulja.in/posts/get-a-notification-when-ram-is-using-compressions-or-swaps-on-macosx">&lt;p&gt;When you have not shut down your mac for a long time and are using a lot of different stuff like having multiple tabs opened in the browser, your RAM tends to get filled.&lt;/p&gt;
+
+&lt;p&gt;After some time, it’ll start to use &lt;code class=&quot;highlighter-rouge&quot;&gt;compressions&lt;/code&gt; to store old data in RAM to make way for fresh data. And after that, it’ll start to use &lt;code class=&quot;highlighter-rouge&quot;&gt;swaps&lt;/code&gt; on your hard disk.&lt;/p&gt;
+
+&lt;p&gt;This usage of swap results in a lot of &lt;code class=&quot;highlighter-rouge&quot;&gt;reads/writes&lt;/code&gt; in the hard disk, which can result in less responsive mac in case of HDD and shortening of life in SSDs.&lt;/p&gt;
+
+&lt;p&gt;This is a script you can schedule to run however and whenever you want using &lt;code class=&quot;highlighter-rouge&quot;&gt;crontab&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;applescript&lt;/code&gt;. It checks various RAM stats like compressions and swap usage and notifies when they are being used.&lt;/p&gt;
+
+&lt;p&gt;Currently, it’s scheduled to &lt;strong&gt;&lt;em&gt;run every hour&lt;/em&gt;&lt;/strong&gt; and to check these RAM parameters-&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Compressions&lt;/li&gt;
+  &lt;li&gt;Decompressions&lt;/li&gt;
+  &lt;li&gt;Swapins&lt;/li&gt;
+  &lt;li&gt;Swapouts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is the &lt;a href=&quot;https://gist.github.com/xRahul/a787f0c4eebfadf7af5beafdb99f9fe7&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;strong&gt;gist&lt;/strong&gt;&lt;/a&gt; with the code. Just download the &lt;code class=&quot;highlighter-rouge&quot;&gt;applescript&lt;/code&gt; file, and set it up using &lt;code class=&quot;highlighter-rouge&quot;&gt;crontab&lt;/code&gt;&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/a787f0c4eebfadf7af5beafdb99f9fe7.js&quot;&gt; &lt;/script&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;references&quot;&gt;References&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;https://crontab.guru/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Crontab.guru&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://en.wikibooks.org/wiki/AppleScript_Programming&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;AppleScript Programming - Wikibooks&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://gist.github.com/xRahul/a787f0c4eebfadf7af5beafdb99f9fe7&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;xRahul/RAM_Overuse_Notification.applescript - Github Gist&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptX/AppleScriptX.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Introduction to AppleScript - Apple Developer Documentation&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptX/AppleScriptX.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Introduction to AppleScript Overview - Apple Developer Documentation&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://developer.apple.com/library/content/documentation/AppleScript/Conceptual/AppleScriptLangGuide/introduction/ASLR_intro.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Introduction to AppleScript Language Guide - Apple Developer Documentation&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://apple.stackexchange.com/questions/24862/how-can-i-configure-my-computer-to-run-an-applescript-at-a-specific-time-caveat&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;How can I configure my computer to run an AppleScript at a specific time? -  Stackexchange&lt;/a&gt;
+&lt;br /&gt;&lt;/p&gt;</content><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><category term="macosx" /><category term="hack" /><summary type="html">When you have not shut down your mac for a long time and are using a lot of different stuff like having multiple tabs opened in the browser, your RAM tends to get filled.</summary></entry><entry><title type="html">Setting up sublime-phpcs for PHP development in Sublime Text</title><link href="https://rahulja.in/posts/setting-up-sublime-phpcs-for-php-development-in-sublime-text" rel="alternate" type="text/html" title="Setting up sublime-phpcs for PHP development in Sublime Text" /><published>2017-03-14T00:00:00+05:30</published><updated>2018-05-19T11:04:23+05:30</updated><id>https://rahulja.in/posts/setting-up-sublime-phpcs-for-php-development-in-sublime-text</id><content type="html" xml:base="https://rahulja.in/posts/setting-up-sublime-phpcs-for-php-development-in-sublime-text">&lt;h4 id=&quot;this-is-a-plugin-for-sublime-text-which-provides-checkstyle-reports-using-the-following-tools-all-optional&quot;&gt;This is a plugin for Sublime Text which provides checkstyle reports using the following tools (all optional):&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Linter (&lt;code class=&quot;highlighter-rouge&quot;&gt;php -l&lt;/code&gt;). This provides a convenient way to perform only a syntax check on the given PHP code.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/squizlabs/PHP_CodeSniffer&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP CodeSniffer&lt;/a&gt; 1.3+ (&lt;code class=&quot;highlighter-rouge&quot;&gt;phpcs&lt;/code&gt;). It tokenizes PHP, JavaScript and CSS files to detect violations of a defined coding standard.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://phpmd.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP Mess Detector&lt;/a&gt; 1.4+ (&lt;code class=&quot;highlighter-rouge&quot;&gt;phpmd&lt;/code&gt;). It detects and reports various potential problems with the code like possible bugs, suboptimal code, overcomplicated expressions and unused parameters, methods, properties.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/facebook/pfff/wiki/Scheck&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Scheck&lt;/a&gt; 0.23+ (&lt;code class=&quot;highlighter-rouge&quot;&gt;scheck&lt;/code&gt;, part of Facebook’s pfff toolchain). This will help you find stupid mistakes like a typo in your code.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;you-can-also-configure-the-plugin-to-fix-the-issues-using-either&quot;&gt;You can also configure the plugin to fix the issues using either&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/FriendsOfPHP/PHP-CS-Fixer&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP Coding Standards Fixer&lt;/a&gt; 0.2+ (&lt;code class=&quot;highlighter-rouge&quot;&gt;php-cs-fixer&lt;/code&gt;). It can fix most issues in your code when you want to follow the PHP coding standards as defined in the PSR-1 and PSR-2 documents and many more.&lt;/li&gt;
+  &lt;li&gt;or &lt;a href=&quot;https://github.com/squizlabs/PHP_CodeSniffer&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP Code Beautifier&lt;/a&gt; 2.2.0+ (&lt;code class=&quot;highlighter-rouge&quot;&gt;phpcbf&lt;/code&gt;). It can automatically correct coding standard violations.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This plugin has been tested on:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Mac OS X 10.8.2&lt;/li&gt;
+  &lt;li&gt;Ubuntu 11.10&lt;/li&gt;
+  &lt;li&gt;Windows 7&lt;/li&gt;
+  &lt;li&gt;Sublime Text 2&lt;/li&gt;
+  &lt;li&gt;Sublime Text 3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;install-sublime-phpcs&quot;&gt;Install sublime-phpcs&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Using Sublime Text’s Package Control &lt;em&gt;(recommended)&lt;/em&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Preferences&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Package Control&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Install Package&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Phpcs&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Or via git checkout in Sublime Text packages&lt;/p&gt;
+
+    &lt;p&gt;Simply checkout the git repo into &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Library/Application Support/Sublime Text [VERSION NUMBER]/Packages/&lt;/code&gt; for MacOSX or the equivalent folder on Windows or Linux.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/Library/Application&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Support/Sublime&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Text&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;2/Packages/
+git clone git://github.com/benmatselby/sublime-phpcs.git Phpcs&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;install-dependencies&quot;&gt;Install dependencies&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Make sure you have &lt;a href=&quot;http://php.net/manual/en/install.php&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;php&lt;/code&gt;&lt;/a&gt; installed on your system and check that you can use it directly-&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;php &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+    PHP 5.6.28 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;cli&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;built: Dec  6 2016 12:38:54&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    Copyright &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 1997-2016 The PHP Group
+    Zend Engine v2.6.0, Copyright &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 1998-2016 Zend Technologies&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Now you need to have the latest &lt;a href=&quot;https://getcomposer.org/doc/00-intro.md&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;composer&lt;/code&gt;&lt;/a&gt; installed. Use the provided link to move it globally.&lt;/li&gt;
+  &lt;li&gt;Now install the &lt;a href=&quot;https://github.com/squizlabs/PHP_CodeSniffer&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP CodeSniffer&lt;/a&gt;, &lt;a href=&quot;https://phpmd.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP Mess Detector&lt;/a&gt;, &lt;a href=&quot;https://github.com/FriendsOfPHP/PHP-CS-Fixer&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP CS Fixer&lt;/a&gt; and &lt;a href=&quot;https://github.com/squizlabs/PHP_CodeSniffer&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP Code Beautifier&lt;/a&gt; globally. You can also follow the links to see the install instructions for each.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;composer global require squizlabs/php_codesniffer
+composer global require phpmd/phpmd
+composer global require friendsofphp/php-cs-fixer&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Please note the absolute path of all the installed packages (On a Mac/Linux based environment), you can use:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;which phpcs
+which phpmd
+which php-cs-fixer
+which phpcbf&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Now install Scheck dependencies.
+    &lt;ul&gt;
+      &lt;li&gt;Make sure you have &lt;a href=&quot;https://git-scm.com/book/en/v2/Getting-Started-Installing-Git&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;git&lt;/a&gt; installed.&lt;/li&gt;
+      &lt;li&gt;Follow the instructions here for generic, macosx and linux to install only these two packages- &lt;code class=&quot;highlighter-rouge&quot;&gt;Ocaml&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;camlp4&lt;/code&gt;. You do not need the other packages like GTK, Cairo, SWI-prolog or Java for scheck.
+For macosx, use &lt;a href=&quot;/posts/using-homebrew-on-macosx&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;homebrew&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# for macosx using homebrew&lt;/span&gt;
+brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;objective-caml camlp4
+
+&lt;span class=&quot;c&quot;&gt;# for fedora, you may need to install these too&lt;/span&gt;
+yum &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ocaml-camlp4 ocaml-camlp4-devel perl-pod-usage&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Now install &lt;a href=&quot;https://github.com/facebook/pfff/wiki/Main#install&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Scheck&lt;/a&gt;. If you follow the instructions mentioned in their project, you can download and setup the entire &lt;code class=&quot;highlighter-rouge&quot;&gt;pfff&lt;/code&gt; set of tools. But for our case, we just need the &lt;code class=&quot;highlighter-rouge&quot;&gt;scheck&lt;/code&gt; part. So, follow these instructions to get just that.&lt;/p&gt;
+
+    &lt;p&gt;After following the steps, you’ll find a file called &lt;code class=&quot;highlighter-rouge&quot;&gt;scheck&lt;/code&gt; in your cloned repo. Please note the absolute path of that as you’ll need it later.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# clone their github repository somewhere&lt;/span&gt;
+git clone https://github.com/facebook/pfff.git &lt;span class=&quot;nt&quot;&gt;--depth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
+
+&lt;span class=&quot;c&quot;&gt;# build pfff tools&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &amp;lt;path_to_cloned_github_repository&amp;gt;
+./configure &lt;span class=&quot;nt&quot;&gt;-novisual&lt;/span&gt;
+make depend
+make&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Now you just need to setup the configuration for &lt;code class=&quot;highlighter-rouge&quot;&gt;sublime-phpcs&lt;/code&gt; package in sublime text.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Preferences&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Package Settings&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;PHP Code Sniffer&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Settings - User&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Add the following json configuration-&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpcs_php_path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/usr/bin/php&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpcs_executable_path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/Users/&amp;lt;username&amp;gt;/.composer/vendor/bin/phpcs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpmd_executable_path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/Users/&amp;lt;username&amp;gt;/.composer/vendor/bin/phpmd&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpcbf_executable_path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/Users/&amp;lt;username&amp;gt;/.composer/vendor/bin/phpcbf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;scheck_executable_path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/Users/&amp;lt;username&amp;gt;/Documents/GitHub/pfff/scheck&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;php_cs_fixer_executable_path&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/Users/&amp;lt;username&amp;gt;/.composer/vendor/bin/php-cs-fixer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpmd_run&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;scheck_run&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpcs_linter_run&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpcs_sniffer_run&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;extensions_to_blacklist&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpcs_execute_on_save&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpcs_show_errors_on_save&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpcs_command_on_save&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;php_cs_fixer_on_save&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpcbf_on_save&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpcs_linter_command_on_save&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;phpmd_command_on_save&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;scheck_command_on_save&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In the above configuration, replace the paths with your install paths.&lt;/p&gt;
+
+&lt;p&gt;Also use either &lt;code class=&quot;highlighter-rouge&quot;&gt;php_cs_fixer&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;phpcbf&lt;/code&gt; for fixing the errors. I’d recommend using &lt;code class=&quot;highlighter-rouge&quot;&gt;phpcbf&lt;/code&gt; as that is already isntalled with &lt;code class=&quot;highlighter-rouge&quot;&gt;phpcs&lt;/code&gt; and thus you won’t have to install &lt;code class=&quot;highlighter-rouge&quot;&gt;php_cs_fixer&lt;/code&gt; at all.&lt;/p&gt;
+
+&lt;p&gt;I am disabling anything happening on save, but you can change the configuration any way you want. Find the defaults here-&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Preferences&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Package Settings&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;PHP Code Sniffer&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Settings - Default&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now you just need to do &lt;code class=&quot;highlighter-rouge&quot;&gt;Cmd&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;Shift&lt;/code&gt; + &lt;code class=&quot;highlighter-rouge&quot;&gt;P&lt;/code&gt; and look for &lt;code class=&quot;highlighter-rouge&quot;&gt;sniff&lt;/code&gt; options.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;references&quot;&gt;References&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;http://benmatselby.github.io/sublime-phpcs/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;sublime-phpcs - Github Pages&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://php.net/manual/en/features.commandline.options.php&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP Command Line Options - php.net&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/squizlabs/PHP_CodeSniffer&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP CodeSniffer - Github&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://phpmd.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP Mess Detector - phpmd&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/FriendsOfPHP/PHP-CS-Fixer&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP Coding Standards Fixer - Github&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/squizlabs/PHP_CodeSniffer&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP Code Beautifier - Github&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://php.net/manual/en/install.php&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PHP installation - php.net&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://getcomposer.org/doc/00-intro.md&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Introduction - Composer&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://git-scm.com/book/en/v2/Getting-Started-Installing-Git&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Installing Git - git-scm&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/facebook/pfff/wiki/Scheck&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Scheck Wiki - Github&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/facebook/pfff/wiki/Main&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;pfff Wiki - Github&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/facebook/pfff/blob/master/install.txt&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;pfff General Install Instructions - Github&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/facebook/pfff/blob/master/install_linux.txt&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;pfff Linux Install Instructions - Github&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/facebook/pfff/blob/master/install_macos.txt&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;pfff MacOSX Install Instructions - Github&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/benmatselby/sublime-phpcs/tree/master/example-settings&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;sublime-phpcs example configurations - Github&lt;/a&gt;&lt;/p&gt;</content><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><category term="development" /><category term="macosx" /><category term="php" /><category term="tools" /><summary type="html">This is a plugin for Sublime Text which provides checkstyle reports using the following tools (all optional):</summary></entry><entry><title type="html">Using Homebrew on MacOSX</title><link href="https://rahulja.in/posts/using-homebrew-on-macosx" rel="alternate" type="text/html" title="Using Homebrew on MacOSX" /><published>2017-03-11T00:00:00+05:30</published><updated>2018-05-19T11:04:23+05:30</updated><id>https://rahulja.in/posts/using-homebrew-on-macosx</id><content type="html" xml:base="https://rahulja.in/posts/using-homebrew-on-macosx">&lt;p&gt;&lt;a href=&quot;/assets/posts/using-homebrew-on-macosx/homebrew.jpg&quot;&gt;
+    &lt;img src=&quot;/assets/posts/using-homebrew-on-macosx/homebrew.jpg&quot; alt=&quot;Homebrew&quot; data-action=&quot;zoom&quot; data-rjs=&quot;/assets/posts/using-homebrew-on-macosx/homebrew.jpg&quot; data-zooming-width=&quot;687&quot; data-zooming-height=&quot;346&quot; /&gt;
+  &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If you have a mac, you need to have &lt;a href=&quot;http://brew.sh/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;homebrew&lt;/a&gt; installed on it. It is the best package manager for mac, and in their own words-&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Homebrew installs &lt;a href=&quot;https://github.com/Homebrew/homebrew-core/tree/master/Formula&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;the stuff you need&lt;/a&gt; that Apple didn’t.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Homebrew installs packages to their own directory and then symlinks their files into &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local&lt;/code&gt;. To &lt;em&gt;install homebrew&lt;/em&gt;, check out simple instructions provided on their &lt;a href=&quot;http://brew.sh/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;homepage&lt;/a&gt;. Homebrew deals with formulas, which are basically package definitions written in Ruby.&lt;/p&gt;
+
+&lt;h3 id=&quot;below-is-a-cheatsheet-of-basic-brew-commands&quot;&gt;Below is a cheatsheet of basic brew commands&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;With &lt;code class=&quot;highlighter-rouge&quot;&gt;--verbose&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;-v&lt;/code&gt;, many commands print extra debugging information. Note that these flags should only appear after a command.&lt;/em&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew --version&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Shows current version (&lt;em&gt;1.1.9 at the time of this post&lt;/em&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew install&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Install formula&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew uninstall&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Uninstall formula&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew update&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Fetch the newest version of Homebrew from &lt;strong&gt;GitHub&lt;/strong&gt; using &lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew list&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;List all installed formulae&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew search text|/text/&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Perform a substring search of formula names as string or regex&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew analytics (on|off)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Turn on/off Homebrew’s analytics&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew deps (formulae)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Show dependencies for formulae&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew desc (formula)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Display formula’s name and one-line description&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew doctor&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Check your system for potential problems with brew installations&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew info (formula)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Display information about formula&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew leaves&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Show installed formulae that are not dependencies of another installed formula&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew outdated&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Show formulae that have an updated version available&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew prune&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Remove dead symlinks from the Homebrew prefix&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew reinstall (formula)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Uninstall and then install formula&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew tap&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;List all installed taps (&lt;em&gt;A tap is a repository of formulae&lt;/em&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew untap (tap)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Remove a tapped repository&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew --cellar&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Display the location where formula would be installed&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew cleanup (formula)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;For specific formulae, remove any older versions from the cellar.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew cleanup -n&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;It shows what would be removed, but does not actually remove anything&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew cask cleanup&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;cleanup in any installed casks&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew cask list&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;list all installed casks&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once you have installed homebrew and started using it, maintenance is required regularly to keep the packages up to date, clearing out the old and checking if everything installed is working correctly. Use this command to do all that at once-&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;brew update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; brew upgrade &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; brew cleanup &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; brew cask cleanup&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; brew doctor&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;or better yet, create an &lt;code class=&quot;highlighter-rouge&quot;&gt;alias&lt;/code&gt; of this run that with single word command &lt;code class=&quot;highlighter-rouge&quot;&gt;brewski&lt;/code&gt;-&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;alias brewski='brew update &amp;amp;&amp;amp; brew upgrade &amp;amp;&amp;amp; brew cleanup &amp;amp;&amp;amp; brew cask cleanup; brew doctor'&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bash_profile
+&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; ~/.bash_profile
+brewski&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;references&quot;&gt;References&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;http://brew.sh/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Homebrew&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/Homebrew/brew&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Homebrew - GitHub&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://www.safaribooksonline.com/blog/2014/03/03/homebrew/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Getting Started with Homebrew - Safari Books&lt;/a&gt;&lt;/p&gt;</content><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><category term="macosx" /><category term="package" /><summary type="html"></summary></entry><entry><title type="html">Decrypt and extract your whatsapp database</title><link href="https://rahulja.in/posts/decrypt-and-extract-your-whatsapp-database" rel="alternate" type="text/html" title="Decrypt and extract your whatsapp database" /><published>2017-02-11T00:00:00+05:30</published><updated>2018-05-19T11:04:23+05:30</updated><id>https://rahulja.in/posts/decrypt-and-extract-your-whatsapp-database</id><content type="html" xml:base="https://rahulja.in/posts/decrypt-and-extract-your-whatsapp-database">&lt;p&gt;&lt;a href=&quot;/assets/posts/decrypt-and-extract-your-whatsapp-database/whatsapp-promo@2x.jpg&quot;&gt;
+    &lt;img src=&quot;/assets/posts/decrypt-and-extract-your-whatsapp-database/whatsapp-promo.jpg&quot; alt=&quot;Whatsapp&quot; data-action=&quot;zoom&quot; data-rjs=&quot;/assets/posts/decrypt-and-extract-your-whatsapp-database/whatsapp-promo@2x.jpg&quot; data-zooming-width=&quot;948&quot; data-zooming-height=&quot;498&quot; /&gt;
+  &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Steps to get your whatsapp data in decrypted form-
+&lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Download the &lt;em&gt;Crypt Key Extractor&lt;/em&gt;  from &lt;a href=&quot;http://whatcrypt.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;WhatCrypt&lt;/a&gt; homepage or you can download it from their &lt;a href=&quot;https://github.com/EliteAndroidApps/WhatsApp-Key-DB-Extractor/archive/master.zip&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;github repository&lt;/a&gt; directly.
+&lt;br /&gt;
+Prerequisites-
+    &lt;ol&gt;
+      &lt;li&gt;O/S: Windows Vista, Windows 7, Windows 8, Windows 10, Mac OS X or Linux&lt;/li&gt;
+      &lt;li&gt;Java - If not installed: &lt;a href=&quot;https://www.java.com/en/download/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;https://www.java.com/en/download/&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;ADB (Android Debug Bridge) Drivers: &lt;a href=&quot;/posts/install-adb-drivers-on-your-system&quot; target=&quot;_blank&quot;&gt;&lt;em&gt;Check out my post&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Android device with Android 4.0 or higher.&lt;/li&gt;
+      &lt;li&gt;USB Debugging must be enabled on the target device.
+ &lt;br /&gt;
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;Settings&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;Developer Options&lt;/code&gt; -&amp;gt; (Debugging) &lt;code class=&quot;highlighter-rouge&quot;&gt;USB debugging&lt;/code&gt;
+ &lt;br /&gt;
+ If you cannot find &lt;code class=&quot;highlighter-rouge&quot;&gt;Developer Options&lt;/code&gt; then please go to:
+ &lt;br /&gt;
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;Settings&lt;/code&gt; -&amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;About phone/device&lt;/code&gt; and tap the Build number multiple times until you’re finally declared a developer.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Extract &lt;code class=&quot;highlighter-rouge&quot;&gt;WhatsApp-Key-DB-Extractor-master.zip&lt;/code&gt; maintaining the directory structure.&lt;/li&gt;
+  &lt;li&gt;Click on &lt;code class=&quot;highlighter-rouge&quot;&gt;WhatsAppKeyDBExtract.bat&lt;/code&gt; (Windows) or &lt;code class=&quot;highlighter-rouge&quot;&gt;WhatsAppKeyDBExtract.sh&lt;/code&gt; (Mac OS X / Linux).
+&lt;br /&gt;Or go to the extracted folder via terminal and run the file as
+&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sh WhatsAppKeyDBExtract.sh&lt;/code&gt;
+&lt;br /&gt;
+Some things to keep in mind for this step-
+    &lt;ul&gt;
+      &lt;li&gt;This step uses the internet to download a legacy version of WhatsApp (2.11) to install on your phone. So make sure your PC is connected to the internet before running it.&lt;/li&gt;
+      &lt;li&gt;Make sure there is no overlay active on your phone like &lt;code class=&quot;highlighter-rouge&quot;&gt;Twilight&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;Blue Light Filter&lt;/code&gt;, as these will not allow you to click on &lt;code class=&quot;highlighter-rouge&quot;&gt;Back up my data&lt;/code&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Connect your device via USB, change the mode from &lt;code class=&quot;highlighter-rouge&quot;&gt;charging&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;media&lt;/code&gt;, unlock your screen and wait for &lt;code class=&quot;highlighter-rouge&quot;&gt;Full backup&lt;/code&gt; to appear.&lt;/li&gt;
+  &lt;li&gt;Enter your backup password or leave blank (if none set) and tap on &lt;code class=&quot;highlighter-rouge&quot;&gt;Back up my data&lt;/code&gt;. This step takes some time depending on the size of your data. So be patient.&lt;/li&gt;
+  &lt;li&gt;Confirm backup password in your command console and then check your &lt;code class=&quot;highlighter-rouge&quot;&gt;extracted&lt;/code&gt; folder. You will find many files there- &lt;code class=&quot;highlighter-rouge&quot;&gt;axolotl.db&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;chatsettings.db&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;msgstore.db&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;wa.db&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;whatsapp.cryptkey&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;All these &lt;code class=&quot;highlighter-rouge&quot;&gt;.db&lt;/code&gt; files are &lt;a href=&quot;https://www.sqlite.org&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;strong&gt;Sqlite&lt;/strong&gt;&lt;/a&gt; databases in unencrypted form. Use a database viewer like &lt;a href=&quot;http://sqlitebrowser.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;DB Browser for SQLite&lt;/a&gt; to see the data.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;references&quot;&gt;References&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;http://whatcrypt.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;WhatCrypt&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/EliteAndroidApps/WhatsApp-Key-DB-Extractor&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;EliteAndroidApps/WhatsApp-Key-DB-Extractor - Github&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://sqlitebrowser.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;DB Browser for SQLite&lt;/a&gt;&lt;/p&gt;</content><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><category term="data" /><category term="social" /><category term="hack" /><summary type="html"></summary></entry><entry><title type="html">Install ADB drivers on your system</title><link href="https://rahulja.in/posts/install-adb-drivers-on-your-system" rel="alternate" type="text/html" title="Install ADB drivers on your system" /><published>2017-02-08T00:00:00+05:30</published><updated>2018-05-19T11:04:23+05:30</updated><id>https://rahulja.in/posts/install-adb-drivers-on-your-system</id><content type="html" xml:base="https://rahulja.in/posts/install-adb-drivers-on-your-system">&lt;p&gt;You don’t need to install the entire android development environment to get the adb now. Google collectively refers to ADB, fastboot, and a few other utilities as the Platform Tools package and has provided them separately now. This post is assuming you don’t have android sdk or android studio installed.&lt;/p&gt;
+
+&lt;h3 id=&quot;install-adb-on-macosx-using-homebrew&quot;&gt;Install adb on MacOSX using &lt;a href=&quot;http://brew.sh/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Homebrew&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;This is the easiest way and will provide automatic updates.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Install homebrew&lt;/span&gt;
+ruby &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Install adb&lt;/span&gt;
+brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;android-platform-tools
+
+&lt;span class=&quot;c&quot;&gt;# run&lt;/span&gt;
+adb devices&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;install-adb-manually&quot;&gt;Install adb manually&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download your OS-specific zip of platform tools from &lt;a href=&quot;https://developer.android.com/studio/releases/platform-tools.html#download&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Extract the contents of the .zip file to a folder you can find later.&lt;/li&gt;
+  &lt;li&gt;Navigate to the extracted folder using your terminal, and there you will find the adb command.&lt;/li&gt;
+  &lt;li&gt;Run the command normally once you’re into the extracted folder- &lt;code class=&quot;highlighter-rouge&quot;&gt;adb devices&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;references&quot;&gt;References&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/a/32314718&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Installing ADB on MAC OS X - StackOverflow&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://developer.android.com/studio/releases/platform-tools.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;SDK Platform Tools Download - Android Studio&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://lifehacker.com/the-easiest-way-to-install-androids-adb-and-fastboot-to-1586992378&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Install Android’s ADB and Fastboot Tools on Any OS - Lifehacker&lt;/a&gt;&lt;/p&gt;</content><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><category term="package" /><category term="android" /><summary type="html">You don’t need to install the entire android development environment to get the adb now. Google collectively refers to ADB, fastboot, and a few other utilities as the Platform Tools package and has provided them separately now. This post is assuming you don’t have android sdk or android studio installed.</summary></entry><entry><title type="html">Send Files using cURL in Php 5.4</title><link href="https://rahulja.in/posts/send-files-using-curl-in-php-54" rel="alternate" type="text/html" title="Send Files using cURL in Php 5.4" /><published>2017-01-08T00:00:00+05:30</published><updated>2018-05-19T11:04:23+05:30</updated><id>https://rahulja.in/posts/send-files-using-curl-in-php-54</id><content type="html" xml:base="https://rahulja.in/posts/send-files-using-curl-in-php-54">&lt;p&gt;Since php 5.5, sending files in php has improved a lot. You can use &lt;a href=&quot;http://php.net/manual/en/class.curlfile.php&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;CURLFile&lt;/a&gt; class or &lt;a href=&quot;http://php.net/manual/en/function.curl-file-create.php&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;curl_file_create()&lt;/a&gt; to upload a file with &lt;code class=&quot;highlighter-rouge&quot;&gt;CURLOPT_POSTFIELDS&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Create a CURLFile object / procedural method&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$cfile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;curl_file_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'resource/test.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image/png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'testpic'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// try adding&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Create a CURLFile object / oop method&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$cfile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CURLFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'resource/test.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image/png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'testpic'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;But for older versions, it’s a struggle.&lt;/p&gt;
+
+&lt;p&gt;First of all, you can not send files using the GET method.  That doesn’t even make sense. Also, you need the absolute path of the file. Relative paths won’t work.&lt;/p&gt;
+
+&lt;p&gt;Here’s a sample code that will work-&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Create a string with file data&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$cfile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;@&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$fileAbsolutePath&lt;/span&gt;
+             &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;;type=&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;mime_content_type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$fileAbsolutePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+             &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;;filename=&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;basename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$fileAbsolutePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Above code has 3 parts-&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;@&quot; . $fileAbsolutePath&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;This gives the cURL library full path to the file so it knows which file to send.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;;type=&quot; . mime_content_type($fileAbsolutePath)&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;This is used to set a MIME Content-type for the uploaded file. Without it, MIME type defaults to &lt;code class=&quot;highlighter-rouge&quot;&gt;application/octet-stream&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;;filename=&quot; . basename($fileAbsolutePath)&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;This is used to give the uploaded file a new name. Use this to change the name of the file that is received by the server on which request is sent.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now you can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;$cfile&lt;/code&gt; variable to send the file by setting it as a parameter to &lt;code class=&quot;highlighter-rouge&quot;&gt;CURLOPT_POSTFIELDS&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// initialise the curl request&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;curl_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'http://abc.xyz'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// send a file&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;curl_setopt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CURLOPT_POST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;curl_setopt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;CURLOPT_POSTFIELDS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;s1&quot;&gt;'file'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'@'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;realpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'example.txt'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// output the response&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;curl_setopt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CURLOPT_RETURNTRANSFER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;curl_exec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// close the session&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;curl_close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;references&quot;&gt;References&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://php.net/manual/en/function.curl-file-create.php#114538&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Function definition for curl_file_create on PHP &amp;lt; 5.5&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://code.stephenmorley.org/php/sending-files-using-curl/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Sending files using cURL in PHP&lt;/a&gt; (2009)&lt;/p&gt;</content><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><category term="php" /><category term="code" /><summary type="html">Since php 5.5, sending files in php has improved a lot. You can use CURLFile class or curl_file_create() to upload a file with CURLOPT_POSTFIELDS.</summary></entry><entry><title type="html">Google Search Console - Basics</title><link href="https://rahulja.in/posts/google-search-console-basics" rel="alternate" type="text/html" title="Google Search Console - Basics" /><published>2017-01-04T00:00:00+05:30</published><updated>2018-05-20T02:22:53+05:30</updated><id>https://rahulja.in/posts/google-search-console---basics</id><content type="html" xml:base="https://rahulja.in/posts/google-search-console-basics">&lt;p&gt;Add and verify your website on the Search Console.
+&lt;br /&gt;
+Now open the console for your added property (In my case - &lt;a href=&quot;https://rahulja.in&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;https://rahulja.in&lt;/a&gt;)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    First thing you need to to is add sitemap of your website. It is generally an
+    &lt;code class=&quot;highlighter-rouge&quot;&gt;xml&lt;/code&gt;
+    file named
+    &lt;code class=&quot;highlighter-rouge&quot;&gt;sitemap.xml&lt;/code&gt;
+    &lt;span&gt;in your website root folder.&lt;/span&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;
+        Go to
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;Crawl&lt;/code&gt;
+        &amp;gt;
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;Sitemaps&lt;/code&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        Click on
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;Add/Test Sitemap&lt;/code&gt;
+        button
+      &lt;/li&gt;
+      &lt;li&gt;Add url to your sitemap.&lt;/li&gt;
+      &lt;li&gt;Submit.&lt;/li&gt;
+    &lt;/ol&gt;
+
+    Now you will see an entry on how many links were submitted and how many have been indexed by that sitemap. It is the easiest way to submit all the links on your website automatically.
+    You can use a sitemap generator, or in my case, jekyll gives me the
+    &lt;code class=&quot;highlighter-rouge&quot;&gt;sitemap.xml&lt;/code&gt;
+    file every time I build my website.
+  &lt;/li&gt;
+  &lt;br /&gt;
+  &lt;li&gt;
+    Next check and edit your
+    &lt;code class=&quot;highlighter-rouge&quot;&gt;robots.txt&lt;/code&gt;
+    file. This is a file at the root of your site that indicates those parts of your site you don’t want to be accessed by search engine crawlers.
+    &lt;ol&gt;
+      &lt;li&gt;
+        Go to
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;Crawl&lt;/code&gt;
+        &amp;gt;
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;robots.txt Tester&lt;/code&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        Edit your robots.txt and check for errors.
+      &lt;/li&gt;
+      &lt;li&gt;
+        Sample-
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sass&quot; data-lang=&quot;sass&quot;&gt;&lt;span class=&quot;nn&quot;&gt;#&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Allow&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;crawling&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;all&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;content&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;User-agent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;Disallow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/*&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;Disallow&lt;/code&gt;
+        allows us to ignore certain URLs and URL types that we'd rather not be indexed and appear in search results.
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;br /&gt;
+  &lt;li&gt;
+    &lt;code class=&quot;highlighter-rouge&quot;&gt;Crawl&lt;/code&gt;
+    &amp;gt;
+    &lt;code class=&quot;highlighter-rouge&quot;&gt;Fetch as Google&lt;/code&gt;
+    to see how Google renders pages from your website. Check different types of URLs for both mobile and desktop Googlebot types.
+  &lt;/li&gt;
+  &lt;br /&gt;
+  &lt;li&gt;
+    Add the &lt;i&gt;google analytics&lt;/i&gt; property to your website if you've added analytics to your website. Do this by clicking on Settings gear on the top right and selecting
+    &lt;code class=&quot;highlighter-rouge&quot;&gt;Google Analytics Property&lt;/code&gt;.
+  &lt;/li&gt;
+  &lt;br /&gt;
+  &lt;li&gt;
+    If your website has some structured data like articles or products, you can highlight them to google for better search results.
+    &lt;ol&gt;
+      &lt;li&gt;
+        Go to
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;Search Appearance&lt;/code&gt;
+        &amp;gt;
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;Data Highlighter&lt;/code&gt;.
+        Click on the red
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;Start Highlighting&lt;/code&gt;
+        Button.
+      &lt;/li&gt;
+      &lt;li&gt;
+        Enter the URL of a typical page that you want to highlight. Like a link to an article, product etc.
+      &lt;/li&gt;
+      &lt;li&gt;
+        Start following the instructions and highlight as much data as you can find on the page. Make google learn pattern in your posts so that it can auto highlight new pages that get added to the index.
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Other Resources&lt;/code&gt;-
+    &lt;ul&gt;
+      &lt;li&gt;Go through the &lt;a href=&quot;https://support.google.com/webmasters/answer/7451184&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Search Engine Optimization (SEO) Starter Guide&lt;/a&gt;. It’ll be help you get started.&lt;/li&gt;
+      &lt;li&gt;If you’ve added any structured data in you website, you can use the &lt;a href=&quot;https://developers.google.com/webmasters/structured-data/testing-tool&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Structured Data Testing Tool&lt;/a&gt; to validate and view it.&lt;/li&gt;
+      &lt;li&gt;Use &lt;a href=&quot;https://developers.google.com/speed/pagespeed/insights/?hl=en&amp;amp;utm_source=wmx&amp;amp;utm_campaign=wmx_otherlinks&amp;amp;url=https://rahulja.in/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;PageSpeed Insights&lt;/a&gt; to find out how to make your web pages fast on all devices.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;references&quot;&gt;References&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;https://support.google.com/webmasters/answer/156184?hl=en&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Learn about sitemaps - Search Console Help&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://support.google.com/webmasters/answer/6062608?hl=en&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Learn about robots.txt files - Search Console Help&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://support.google.com/webmasters/answer/6066468&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Use Fetch as Google for websites - Search Console Help&lt;/a&gt;&lt;/p&gt;</content><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><category term="web" /><category term="tools" /><summary type="html">Add and verify your website on the Search Console. Now open the console for your added property (In my case - https://rahulja.in)</summary></entry><entry><title type="html">Configure this site locally for development</title><link href="https://rahulja.in/posts/configure-this-site-locally-for-development" rel="alternate" type="text/html" title="Configure this site locally for development" /><published>2017-01-03T00:00:00+05:30</published><updated>2018-05-19T11:04:23+05:30</updated><id>https://rahulja.in/posts/configure-this-site-locally-for-development</id><content type="html" xml:base="https://rahulja.in/posts/configure-this-site-locally-for-development">&lt;p&gt;&lt;a href=&quot;/assets/posts/configure-this-site-locally-for-development/og-image@2x.png&quot;&gt;
+    &lt;img src=&quot;/assets/posts/configure-this-site-locally-for-development/og-image.png&quot; alt=&quot;Chalk Template&quot; data-action=&quot;zoom&quot; data-rjs=&quot;/assets/posts/configure-this-site-locally-for-development/og-image@2x.png&quot; data-zooming-width=&quot;959&quot; data-zooming-height=&quot;626&quot; /&gt;
+  &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Install ruby 2.3.3&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;rbenv &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;2.3.3
+rbenv global 2.3.3
+ruby &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Install site&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git clone https://github.com/xRahul/xRahul.github.io.git
+git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; credential.helper cache
+git config &lt;span class=&quot;nt&quot;&gt;--global&lt;/span&gt; credential.helper &lt;span class=&quot;s1&quot;&gt;'cache --timeout=36000'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;xRahul.github.io/
+git branch &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'\-&amp;gt;'&lt;/span&gt; | &lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;read &lt;/span&gt;remote&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;--track&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;remote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;#origin/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$remote&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;done
+&lt;/span&gt;git fetch &lt;span class=&quot;nt&quot;&gt;--all&lt;/span&gt;
+git pull &lt;span class=&quot;nt&quot;&gt;--all&lt;/span&gt;
+bin/setup&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Run local development server&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve &lt;span class=&quot;nt&quot;&gt;--drafts&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Deploy to github master branch&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;bin/deploy&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;references&quot;&gt;References&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;https://rahulja.in&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;rahulja.in&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;https://github.com/xRahul/xRahul.github.io/tree/new-site&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;xRahul.github.io - Github&lt;/a&gt;
+&lt;br /&gt;
+&lt;a href=&quot;http://stackoverflow.com/a/10312587/1435626&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;How to fetch all git branches - StackOverflow&lt;/a&gt;&lt;/p&gt;</content><author><name>Rahul Jain</name><email>rahul_jain@live.in</email><uri>https://rahulja.in/about</uri></author><category term="jekyll" /><category term="ruby" /><category term="development" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://rahulja.in/posts/configure-this-site-locally-for-development/og-image.png" /></entry></feed>
